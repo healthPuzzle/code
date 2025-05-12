@@ -45,21 +45,13 @@ class RoutineSettingActivity : AppCompatActivity() {
             findViewById(R.id.btn_sun)
         )
 
-        dayButtons = listOf(
-            findViewById(R.id.btn_mon),
-            findViewById(R.id.btn_tue),
-            findViewById(R.id.btn_wed),
-            findViewById(R.id.btn_thu),
-            findViewById(R.id.btn_fri),
-            findViewById(R.id.btn_sat),
-            findViewById(R.id.btn_sun)
-        )
-
         setupSpinners()
         setupEveryDayButton()
         setupSaveButton()
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.nav_routine
+
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
@@ -109,8 +101,12 @@ class RoutineSettingActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            val days = dayButtons.filter { it.isSelected }.map { it.text.toString() }
+            val routine = RoutineItem(title, detailInput.text.toString(), time, days)
+
             if (isDefault) {
-                saveRoutineToDatabase(title, time)
+                RoutineManager.addRoutine(routine)
+                saveRoutineToDatabase(title, time, days)  // 요일 데이터도 저장
             } else {
                 val intent = Intent().apply {
                     putExtra("title", title)
@@ -125,7 +121,14 @@ class RoutineSettingActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveRoutineToDatabase(title: String, time: String) {
+    private fun saveRoutineToDatabase(title: String, time: String, days: List<String>) {
+        val prefs = getSharedPreferences("routine_prefs", MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putString("routine_title", title)
+        editor.putString("routine_time", time)
+        editor.putStringSet("routine_days", days.toSet())
+        editor.apply()
+
         Toast.makeText(this, "기본 루틴으로 저장되었습니다", Toast.LENGTH_SHORT).show()
     }
 }

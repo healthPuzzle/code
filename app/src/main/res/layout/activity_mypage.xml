@@ -237,24 +237,28 @@
             android:layout_marginBottom="12dp" />
 
         <LinearLayout
+            android:id="@+id/layout_regular_routine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:visibility="gone"
             android:background="@drawable/card_bg"
             android:padding="16dp"
             android:layout_marginBottom="12dp">
 
             <TextView
+                android:id="@+id/text_regular_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="💪 정기 운동 루틴"
+                android:text="💪 루틴 제목"
                 android:textStyle="bold"
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/text_regular_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="매일 아침 7시 운동"
+                android:text="월, 화, 수, 목, 금 - 07:00"
                 android:textSize="12sp"
                 android:textColor="#666666"
                 android:layout_marginTop="4dp" />

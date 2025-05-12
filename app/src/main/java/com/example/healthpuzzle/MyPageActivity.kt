@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -14,7 +16,26 @@ class MyPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage)
 
+        // 정기 루틴 표시
+        val regularRoutines = RoutineManager.getRegularRoutines()
+
+        if (regularRoutines.isNotEmpty()) {
+            val routineSection = findViewById<LinearLayout>(R.id.layout_regular_routine)
+            routineSection.visibility = View.VISIBLE
+
+            val titleView = routineSection.findViewById<TextView>(R.id.text_regular_title)
+            val timeView = routineSection.findViewById<TextView>(R.id.text_regular_time)
+
+            // 루틴 제목과 시간을 설정
+            val routine = regularRoutines.first()
+            titleView.text = "💪 ${routine.title}"
+            timeView.text = routine.time
+        }
+
+
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.nav_mypage
+
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
