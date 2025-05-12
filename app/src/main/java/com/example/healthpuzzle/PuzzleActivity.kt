@@ -1,6 +1,5 @@
 package com.example.healthpuzzle
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,11 +8,11 @@ import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.healthpuzzle.databinding.ActivityPuzzleBinding
-import com.example.healthpuzzle.databinding.PuzzleSectionBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.app.AlertDialog
 import androidx.core.content.ContextCompat
+import com.example.healthpuzzle.databinding.ActivityPuzzleBinding
+import com.example.healthpuzzle.databinding.PuzzleSectionBinding
 
 class PuzzleActivity : AppCompatActivity() {
 
@@ -130,15 +129,15 @@ class PuzzleActivity : AppCompatActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                     true
                 }
-//                R.id.nav_routine -> {
-//                    startActivity(Intent(this, RoutineSettingsActivity::class.java))
-//                    true
-//                }
+                R.id.nav_routine -> {
+                    startActivity(Intent(this, RoutineSettingActivity::class.java))
+                    true
+                }
                 R.id.nav_puzzle -> true // 현재 페이지
-//                R.id.nav_mypage -> {
-//                    startActivity(Intent(this, MyPageActivity::class.java))
-//                    true
-//                }
+                R.id.nav_mypage -> {
+                    startActivity(Intent(this, MyPageActivity::class.java))
+                    true
+                }
                 else -> false
             }
         }

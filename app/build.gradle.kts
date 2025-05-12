@@ -4,11 +4,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myapplication"
+    namespace = "com.example.healthpuzzle"
     compileSdk = 35
+    viewBinding.isEnabled = true
 
     defaultConfig {
-        applicationId = "com.example.myapplication"
+        applicationId = "com.example.healthpuzzle"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -45,5 +46,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation ("com.google.android.flexbox:flexbox:3.0.0")
+    implementation(libs.flexbox)
 }

@@ -9,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.healthpuzzle.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         addButton.setOnClickListener {
-            val intent = Intent(this, AddRoutineActivity::class.java)
+            val intent = Intent(this, RoutineSettingActivity::class.java)
             addRoutineResultLauncher.launch(intent)
         }
 
@@ -70,27 +71,23 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    // 홈 메뉴 클릭 처리
                     true
                 }
-//                R.id.nav_routine -> {
-//                    // 루틴설정 메뉴 클릭 처리
-//                    val intent = Intent(this, RoutineSettingActivity::class.java)
-//                    startActivity(intent)
-//                    true
-//                }
+                R.id.nav_routine -> {
+                    val intent = Intent(this, RoutineSettingActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
                 R.id.nav_puzzle -> {
-                    // 퍼즐 메뉴 클릭 처리
                     val intent = Intent(this, PuzzleActivity::class.java)
                     startActivity(intent)
                     true
                 }
-//                R.id.nav_mypage -> {
-//                    // 마이페이지 메뉴 클릭 처리
-//                    val intent = Intent(this, MyPageActivity::class.java)
-//                    startActivity(intent)
-//                    true
-//                }
+                R.id.nav_mypage -> {
+                    val intent = Intent(this, MyPageActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
                 else -> false
             }
         }
