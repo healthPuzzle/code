@@ -1,0 +1,70 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/routineCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/card_background"> <!-- 기본 카드뷰 배경 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- 세로선 -->
+        <View
+            android:id="@+id/left_indicator"
+            android:layout_width="4dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="8dp"
+            android:background="#7C4DFF" />
+
+        <!-- 텍스트 -->
+        <LinearLayout
+            android:layout_toEndOf="@id/left_indicator"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/routineTitle"
+                android:text="루틴 제목"
+                android:textColor="#212121"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/routineTime"
+                android:text="7:00 AM"
+                android:textColor="#9E9E9E"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- 완료 텍스트 (완료되면 표시) -->
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="완료됨"
+            android:textSize="12sp"
+            android:textColor="#4CAF50"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="36dp"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
+
+        <!-- 체크 아이콘 -->
+        <ImageView
+            android:id="@+id/check_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_check"
+            android:background="@drawable/circle_outline_background" /> <!-- 기본 보라색 빈 동그라미 -->
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
