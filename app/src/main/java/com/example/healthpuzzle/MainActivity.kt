@@ -1,5 +1,6 @@
 package com.example.healthpuzzle
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -9,11 +10,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.healthpuzzle.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,8 +52,12 @@ class MainActivity : AppCompatActivity() {
         addRoutineResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK && result.data != null) {
                 val title = result.data?.getStringExtra("title") ?: return@registerForActivityResult
+                val detail = result.data?.getStringExtra("detail") ?: return@registerForActivityResult
                 val time = result.data?.getStringExtra("time") ?: return@registerForActivityResult
-                routineList.add(RoutineItem(title, time))
+                val days = result.data?.getStringArrayListExtra("days") ?: return@registerForActivityResult
+                routineList.add(RoutineItem(
+                    title, detail, time, days, isCompleted = false
+                ))
                 routineAdapter.notifyItemInserted(routineList.size - 1)
                 updateProgress(progressText)
             }
@@ -118,7 +124,7 @@ class MainActivity : AppCompatActivity() {
     private fun showPuzzleDialog() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_puzzle_reward, null)
 
-        val dialog = android.app.AlertDialog.Builder(this)
+        val dialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .setCancelable(false)
             .create()

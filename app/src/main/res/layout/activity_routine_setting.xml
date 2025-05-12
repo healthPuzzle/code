@@ -5,183 +5,161 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:orientation="horizontal">
+    android:background="#FFFFFF">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_height="match_parent">
 
-        <!-- Toolbar -->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_routinesetting"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="새 루틴 추가"
-            android:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:paddingTop="8dp"
-            android:paddingBottom="16dp" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="루틴 이름"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:layout_marginBottom="4dp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputEditText
+            <!-- Toolbar -->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_routinesetting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="루틴 이름을 입력하세요" />
-        </com.google.android.material.textfield.TextInputLayout>
+                app:title="새 루틴 추가"
+                android:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:paddingTop="8dp"
+                android:paddingBottom="16dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="상세 내용"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="4dp" />
+            <!-- 루틴 이름 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="루틴 이름"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginBottom="4dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/routine_title_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="루틴 이름을 입력하세요" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- 상세 내용 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="상세 내용"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/routine_detail_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:hint="루틴에 대한 상세 내용을 입력하세요" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- 시간 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시간"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="top"
-                android:hint="루틴에 대한 상세 내용을 입력하세요" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="시간"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="4dp" />
+                <Spinner
+                    android:id="@+id/spinner_hour"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="4dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
+                <Spinner
+                    android:id="@+id/spinner_minute"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown" />
+            </LinearLayout>
+
+            <!-- 반복 요일 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="반복"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp" />
+
+            <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="__:__" />
-        </com.google.android.material.textfield.TextInputLayout>
+                app:flexWrap="wrap"
+                app:justifyContent="flex_start">
 
-        <!-- 반복 요일 선택 -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="반복"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp" />
+                <Button
+                    android:id="@+id/btn_every_day"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:text="매일"
+                    android:textSize="14dp"
+                    android:layout_margin="4dp" />
 
-        <com.google.android.flexbox.FlexboxLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:flexWrap="wrap"
-            app:justifyContent="flex_start">
+                <Button android:id="@+id/btn_mon" android:layout_width="80dp" android:layout_height="40dp" android:text="월" android:layout_margin="4dp" />
+                <Button android:id="@+id/btn_tue" android:layout_width="80dp" android:layout_height="40dp" android:text="화" android:layout_margin="4dp" />
+                <Button android:id="@+id/btn_wed" android:layout_width="80dp" android:layout_height="40dp" android:text="수" android:layout_margin="4dp" />
+                <Button android:id="@+id/btn_thu" android:layout_width="80dp" android:layout_height="40dp" android:text="목" android:layout_margin="4dp" />
+                <Button android:id="@+id/btn_fri" android:layout_width="80dp" android:layout_height="40dp" android:text="금" android:layout_margin="4dp" />
+                <Button android:id="@+id/btn_sat" android:layout_width="80dp" android:layout_height="40dp" android:text="토" android:layout_margin="4dp" />
+                <Button android:id="@+id/btn_sun" android:layout_width="80dp" android:layout_height="40dp" android:text="일" android:layout_margin="4dp" />
+            </com.google.android.flexbox.FlexboxLayout>
 
-            <!-- 버튼 공통 스타일 적용 -->
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:text="매일"
-                android:textSize="14dp"
-                android:textColor="#333333"
-                android:backgroundTint="#E0E0E0"
-                android:layout_margin="4dp"/>
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:text="월"
-                android:textSize="14dp"
-                android:textColor="#333333"
-                android:backgroundTint="#E0E0E0"
-                android:layout_margin="4dp"/>
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:text="화"
-                android:textSize="14dp"
-                android:textColor="#333333"
-                android:backgroundTint="#E0E0E0"
-                android:layout_margin="4dp"/>
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:text="수"
-                android:textSize="14dp"
-                android:textColor="#333333"
-                android:backgroundTint="#E0E0E0"
-                android:layout_margin="4dp"/>
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:text="목"
-                android:textSize="14dp"
-                android:textColor="#333333"
-                android:backgroundTint="#E0E0E0"
-                android:layout_margin="4dp"/>
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:text="금"
-                android:textSize="14dp"
-                android:textColor="#333333"
-                android:backgroundTint="#E0E0E0"
-                android:layout_margin="4dp"/>
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:text="토"
-                android:textSize="14dp"
-                android:textColor="#333333"
-                android:backgroundTint="#E0E0E0"
-                android:layout_margin="4dp"/>
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:text="일"
-                android:textSize="14dp"
-                android:textColor="#333333"
-                android:backgroundTint="#E0E0E0"
-                android:layout_margin="4dp"/>
-        </com.google.android.flexbox.FlexboxLayout>
+            <!-- 기본 루틴 체크박스 -->
+            <CheckBox
+                android:id="@+id/checkbox_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기본 루틴으로 설정하기"
+                android:layout_marginTop="16dp" />
 
-        <!-- 기본 루틴 체크 -->
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="기본 루틴으로 설정하기"
-            android:layout_marginTop="16dp" />
-
-        <!-- 추가하기 버튼 -->
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="24dp"
-            android:text="추가하기"
-            android:textSize="16sp"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#7C3AED"
-            app:cornerRadius="12dp" />
-    </LinearLayout>
+            <!-- 저장 버튼 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="24dp"
+                android:text="추가하기"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#7C3AED"
+                app:cornerRadius="12dp" />
+        </LinearLayout>
+    </ScrollView>
 
     <!-- 하단 네비게이션 -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

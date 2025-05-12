@@ -51,12 +51,51 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2025년 1월 가입"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
+                <!-- 편집 아이콘 -->
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_edit"
+                    android:contentDescription="편집"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="-20dp"
+                    android:onClick="showNameEditDialog" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="160cm"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  "
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50kg"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <!-- 몸무게와 키 편집 아이콘 -->
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_edit"
+                    android:contentDescription="편집"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="-20dp"
+                    android:onClick="showHeightWeightEditDialog" />
             </LinearLayout>
         </LinearLayout>
 
@@ -88,7 +127,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="248"
+                    android:text="48"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp" />
@@ -120,7 +159,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12"
+                    android:text="1"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp" />
@@ -144,51 +183,7 @@
             android:layout_marginTop="28dp"
             android:layout_marginBottom="12dp" />
 
-        <!-- 업적 카드 1 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/card_bg"
-            android:padding="16dp"
-            android:layout_marginBottom="12dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🏆 꾸준한 실천가"
-                android:textStyle="bold"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="30일 연속 루틴 달성"
-                android:textSize="12sp"
-                android:textColor="#666666"
-                android:layout_marginTop="4dp" />
-
-            <ProgressBar
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:layout_marginTop="12dp"
-                android:progress="28"
-                android:max="30"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:progressTint="#7C3AED"
-                android:backgroundTint="#E0E0E0" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="28/30"
-                android:textSize="12sp"
-                android:textColor="#7C3AED"
-                android:layout_gravity="end"
-                android:layout_marginTop="4dp" />
-        </LinearLayout>
-
-        <!-- 업적 카드 2 -->
+        <!-- 업적 카드 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -228,6 +223,40 @@
                 android:textSize="12sp"
                 android:textColor="#7C3AED"
                 android:layout_gravity="end"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- 정기 루틴 보기 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정기 루틴"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💪 정기 운동 루틴"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="매일 아침 7시 운동"
+                android:textSize="12sp"
+                android:textColor="#666666"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
     </LinearLayout>

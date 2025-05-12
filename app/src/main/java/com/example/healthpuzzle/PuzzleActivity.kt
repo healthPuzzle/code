@@ -1,5 +1,6 @@
 package com.example.healthpuzzle
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,11 +9,10 @@ import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import android.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.example.healthpuzzle.databinding.ActivityPuzzleBinding
 import com.example.healthpuzzle.databinding.PuzzleSectionBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class PuzzleActivity : AppCompatActivity() {
 
@@ -121,7 +121,7 @@ class PuzzleActivity : AppCompatActivity() {
         binding.totalCountText.text = "$totalAcquired/$totalPieces"
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNav.selectedItemId = R.id.nav_puzzle // 현재 페이지 강조
+        bottomNav.selectedItemId = R.id.nav_puzzle
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
