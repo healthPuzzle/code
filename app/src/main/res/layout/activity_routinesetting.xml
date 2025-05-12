@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_routinesetting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="새 루틴 추가"
+            android:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:paddingTop="8dp"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="루틴 이름"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="루틴 이름을 입력하세요" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상세 내용"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="top"
+                android:hint="루틴에 대한 상세 내용을 입력하세요" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="시간"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="__:__" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- 반복 요일 선택 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="반복"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexWrap="wrap"
+            app:justifyContent="flex_start">
+
+            <!-- 버튼 공통 스타일 적용 -->
+            <Button
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:text="매일"
+                android:textSize="14dp"
+                android:textColor="#333333"
+                android:backgroundTint="#E0E0E0"
+                android:layout_margin="4dp"/>
+            <Button
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:text="월"
+                android:textSize="14dp"
+                android:textColor="#333333"
+                android:backgroundTint="#E0E0E0"
+                android:layout_margin="4dp"/>
+            <Button
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:text="화"
+                android:textSize="14dp"
+                android:textColor="#333333"
+                android:backgroundTint="#E0E0E0"
+                android:layout_margin="4dp"/>
+            <Button
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:text="수"
+                android:textSize="14dp"
+                android:textColor="#333333"
+                android:backgroundTint="#E0E0E0"
+                android:layout_margin="4dp"/>
+            <Button
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:text="목"
+                android:textSize="14dp"
+                android:textColor="#333333"
+                android:backgroundTint="#E0E0E0"
+                android:layout_margin="4dp"/>
+            <Button
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:text="금"
+                android:textSize="14dp"
+                android:textColor="#333333"
+                android:backgroundTint="#E0E0E0"
+                android:layout_margin="4dp"/>
+            <Button
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:text="토"
+                android:textSize="14dp"
+                android:textColor="#333333"
+                android:backgroundTint="#E0E0E0"
+                android:layout_margin="4dp"/>
+            <Button
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:text="일"
+                android:textSize="14dp"
+                android:textColor="#333333"
+                android:backgroundTint="#E0E0E0"
+                android:layout_margin="4dp"/>
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <!-- 기본 루틴 체크 -->
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기본 루틴으로 설정하기"
+            android:layout_marginTop="16dp" />
+
+        <!-- 추가하기 버튼 -->
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:text="추가하기"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#7C3AED"
+            app:cornerRadius="12dp" />
+    </LinearLayout>
+</LinearLayout>
