@@ -106,10 +106,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkAndShowPuzzleDialog() {
         if (routineList.isNotEmpty() && routineList.all { it.isCompleted }) {
+            val prefs = getSharedPreferences("puzzle_data", MODE_PRIVATE)
+
+            val today = SimpleDateFormat("yyyyMMdd", Locale.KOREAN).format(Date())
+            val lastCollectedDate = prefs.getString("last_puzzle_collected_date", "")
+
+            // 오늘 이미 퍼즐을 수집했다면 모달 띄우지 않음
+            if (lastCollectedDate == today) return
+
             val puzzle = PuzzleManager.collectPuzzle()
 
             if (puzzle != null) {
-                val prefs = getSharedPreferences("puzzle_data", MODE_PRIVATE)
                 val currentSet = prefs.getStringSet("collected_puzzles", emptySet())?.toMutableSet() ?: mutableSetOf()
                 currentSet.addAll(PuzzleManager.collectedPuzzles)
 
@@ -118,6 +125,7 @@ class MainActivity : AppCompatActivity() {
                 prefs.edit().apply {
                     putStringSet("collected_puzzles", currentSet)
                     putInt("puzzle_master_count", masterCount)
+                    putString("last_puzzle_collected_date", today) // 오늘 퍼즐 수집 기록
                     apply()
                 }
             }
