@@ -44,6 +44,7 @@
                 android:textColor="#7C4DFF"
                 android:textSize="15sp" />
         </LinearLayout>
+
     </LinearLayout>
 
     <!-- 루틴 목록과 버튼이 겹쳐지도록 FrameLayout 사용 -->
