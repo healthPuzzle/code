@@ -5,5 +5,6 @@ data class RoutineItem(
     val detail: String,
     val time: String,
     val days: List<String>,
-    var isCompleted: Boolean = false
+    var isCompleted: Boolean = false,
+    val addedDate: String? = null
 )

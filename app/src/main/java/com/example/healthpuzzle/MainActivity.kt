@@ -5,8 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var routineAdapter: RoutineAdapter
     private val routineList = mutableListOf<RoutineItem>()
-    private lateinit var addRoutineResultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,34 +37,28 @@ class MainActivity : AppCompatActivity() {
 
         // 루틴 어댑터 설정
         routineAdapter = RoutineAdapter(routineList) { position ->
+            val item = routineList[position]
             routineList[position].isCompleted = !routineList[position].isCompleted
             routineAdapter.notifyItemChanged(position)
+
+            // 일반 루틴 완료 여부 저장 (routine2_ 인덱스 기반)
+            val prefs = getSharedPreferences("routine_prefs", MODE_PRIVATE)
+            prefs.edit().putBoolean("completed_routine2_$position", item.isCompleted).apply()
+
             updateProgress(progressText)
         }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = routineAdapter
 
-        // Activity Result API 초기화
-        addRoutineResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK && result.data != null) {
-                val title = result.data?.getStringExtra("title") ?: return@registerForActivityResult
-                val detail = result.data?.getStringExtra("detail") ?: return@registerForActivityResult
-                val time = result.data?.getStringExtra("time") ?: return@registerForActivityResult
-                val days = result.data?.getStringArrayListExtra("days") ?: return@registerForActivityResult
-                routineList.add(RoutineItem(
-                    title, detail, time, days, isCompleted = false
-                ))
-                routineAdapter.notifyItemInserted(routineList.size - 1)
-                updateProgress(progressText)
-            }
-        }
-
         addButton.setOnClickListener {
             val intent = Intent(this, RoutineSettingActivity::class.java)
-            addRoutineResultLauncher.launch(intent)
+            startActivity(intent)
         }
 
+        routineList.clear()
+        loadRegularRoutines()
+        loadDailyRoutines()
         updateProgress(progressText)
 
         // BottomNavigationView 설정
@@ -139,6 +130,36 @@ class MainActivity : AppCompatActivity() {
         }
 
         dialog.show()
+    }
+
+    // ✅ 기본 루틴 로드 (요일 기준 필터링)
+    private fun loadRegularRoutines() {
+        // 정기 루틴 불러오기
+        val regularRoutines = RoutineManager.getRegularRoutines()
+
+        // 오늘 요일 가져오기
+        val today = SimpleDateFormat("E", Locale.KOREAN).format(Date())
+
+        // 해당 요일에 맞는 루틴만 필터링하여 표시
+        val filteredRoutines = regularRoutines.filter { routine ->
+            routine.days.contains(today)
+        }
+
+        // 루틴 리스트에 추가하여 화면에 표시
+        routineList.addAll(filteredRoutines)
+        routineAdapter.notifyDataSetChanged()
+    }
+
+    // ✅ 일반 루틴 로드 (오늘 날짜 기준 필터링)
+    private fun loadDailyRoutines() {
+        val todayDate = SimpleDateFormat("yyyyMMdd", Locale.KOREAN).format(Date())
+
+        // RoutineManager에서 오늘 날짜의 루틴을 가져옴
+        val dailyRoutines = RoutineManager.getTodayRoutines(todayDate)
+
+        routineList.clear() // 기존 루틴을 클리어하고
+        routineList.addAll(dailyRoutines) // 새로운 루틴 추가
+        routineAdapter.notifyDataSetChanged()
     }
 
 }

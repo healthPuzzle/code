@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/dialog_routine_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="💪 루틴 제목"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/dialog_routine_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="상세 내용: "
+        android:textSize="14sp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/dialog_routine_days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="요일: "
+        android:textSize="14sp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/dialog_routine_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="시간: "
+        android:textSize="14sp"
+        android:layout_marginBottom="8dp" />
+</LinearLayout>
