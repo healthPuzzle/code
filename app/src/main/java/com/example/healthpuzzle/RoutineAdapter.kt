@@ -27,10 +27,6 @@ class RoutineAdapter(
             val toggleComplete = {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val item = items[position]
-                    item.isCompleted = !item.isCompleted
-                    notifyItemChanged(position)
-                    //MainActivity에 변경 사실 알리기
                     onChecked(position)
                 }
             }

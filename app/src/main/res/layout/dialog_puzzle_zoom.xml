@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    android:background="@android:color/white">
+    android:background="@drawable/dialog_background">
 
     <ImageView
         android:id="@+id/zoomedImage"

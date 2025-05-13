@@ -106,39 +106,6 @@
                     android:spinnerMode="dropdown" />
             </LinearLayout>
 
-            <!-- 반복 요일 -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="반복"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp" />
-
-            <com.google.android.flexbox.FlexboxLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:flexWrap="wrap"
-                app:justifyContent="flex_start">
-
-                <Button
-                    android:id="@+id/btn_every_day"
-                    android:layout_width="80dp"
-                    android:layout_height="40dp"
-                    android:text="매일"
-                    android:textSize="14dp"
-                    android:layout_margin="4dp" />
-
-                <Button android:id="@+id/btn_mon" android:layout_width="80dp" android:layout_height="40dp" android:text="월" android:layout_margin="4dp" />
-                <Button android:id="@+id/btn_tue" android:layout_width="80dp" android:layout_height="40dp" android:text="화" android:layout_margin="4dp" />
-                <Button android:id="@+id/btn_wed" android:layout_width="80dp" android:layout_height="40dp" android:text="수" android:layout_margin="4dp" />
-                <Button android:id="@+id/btn_thu" android:layout_width="80dp" android:layout_height="40dp" android:text="목" android:layout_margin="4dp" />
-                <Button android:id="@+id/btn_fri" android:layout_width="80dp" android:layout_height="40dp" android:text="금" android:layout_margin="4dp" />
-                <Button android:id="@+id/btn_sat" android:layout_width="80dp" android:layout_height="40dp" android:text="토" android:layout_margin="4dp" />
-                <Button android:id="@+id/btn_sun" android:layout_width="80dp" android:layout_height="40dp" android:text="일" android:layout_margin="4dp" />
-            </com.google.android.flexbox.FlexboxLayout>
-
             <!-- 기본 루틴 체크박스 -->
             <CheckBox
                 android:id="@+id/checkbox_default"
@@ -146,6 +113,39 @@
                 android:layout_height="wrap_content"
                 android:text="기본 루틴으로 설정하기"
                 android:layout_marginTop="16dp" />
+
+            <!-- 반복 요일 -->
+            <LinearLayout
+                android:id="@+id/repeat_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="반복"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp" />
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start">
+
+                    <Button android:id="@+id/btn_every_day" android:layout_width="80dp" android:layout_height="40dp" android:text="매일" android:layout_margin="4dp" />
+                    <Button android:id="@+id/btn_mon" android:layout_width="80dp" android:layout_height="40dp" android:text="월" android:layout_margin="4dp" />
+                    <Button android:id="@+id/btn_tue" android:layout_width="80dp" android:layout_height="40dp" android:text="화" android:layout_margin="4dp" />
+                    <Button android:id="@+id/btn_wed" android:layout_width="80dp" android:layout_height="40dp" android:text="수" android:layout_margin="4dp" />
+                    <Button android:id="@+id/btn_thu" android:layout_width="80dp" android:layout_height="40dp" android:text="목" android:layout_margin="4dp" />
+                    <Button android:id="@+id/btn_fri" android:layout_width="80dp" android:layout_height="40dp" android:text="금" android:layout_margin="4dp" />
+                    <Button android:id="@+id/btn_sat" android:layout_width="80dp" android:layout_height="40dp" android:text="토" android:layout_margin="4dp" />
+                    <Button android:id="@+id/btn_sun" android:layout_width="80dp" android:layout_height="40dp" android:text="일" android:layout_margin="4dp" />
+                </com.google.android.flexbox.FlexboxLayout>
+            </LinearLayout>
 
             <!-- 저장 버튼 -->
             <com.google.android.material.button.MaterialButton
