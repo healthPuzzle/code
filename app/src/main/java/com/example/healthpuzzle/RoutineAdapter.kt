@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.healthpuzzle.R
 
 class RoutineAdapter(
     private val items: MutableList<RoutineItem>,
@@ -31,6 +30,8 @@ class RoutineAdapter(
                     val item = items[position]
                     item.isCompleted = !item.isCompleted
                     notifyItemChanged(position)
+                    //MainActivity에 변경 사실 알리기
+                    onChecked(position)
                 }
             }
             checkIcon.setOnClickListener { toggleComplete() }

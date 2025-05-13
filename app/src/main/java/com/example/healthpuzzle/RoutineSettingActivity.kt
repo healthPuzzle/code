@@ -58,9 +58,7 @@ class RoutineSettingActivity : AppCompatActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                     true
                 }
-                R.id.nav_routine -> {
-                    true
-                }
+                R.id.nav_routine -> true
                 R.id.nav_puzzle -> {
                     startActivity(Intent(this, PuzzleActivity::class.java))
                     true
@@ -102,7 +100,8 @@ class RoutineSettingActivity : AppCompatActivity() {
             }
 
             val days = dayButtons.filter { it.isSelected }.map { it.text.toString() }
-            val routine = RoutineItem(title, detailInput.text.toString(), time, days)
+
+            /*val routine = RoutineItem(title, detailInput.text.toString(), time, days)
 
             if (isDefault) {
                 RoutineManager.addRoutine(routine)
@@ -118,16 +117,36 @@ class RoutineSettingActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
+        }*/
+
+            val intent = Intent().apply {
+                putExtra("title", title)
+                putExtra("detail", detailInput.text.toString())
+                putExtra("time", time)
+                putStringArrayListExtra("days", ArrayList(days))
+            }
+
+            // 기본 루틴이면 RoutineManager에 등록
+            if (isDefault) {
+                RoutineManager.addRoutine(
+                    RoutineItem(title, detailInput.text.toString(), time, days)
+                )
+                saveRoutineToDatabase(title, time, days)
+            }
+
+            setResult(RESULT_OK, intent)
+            finish()
         }
     }
 
     private fun saveRoutineToDatabase(title: String, time: String, days: List<String>) {
         val prefs = getSharedPreferences("routine_prefs", MODE_PRIVATE)
-        val editor = prefs.edit()
-        editor.putString("routine_title", title)
-        editor.putString("routine_time", time)
-        editor.putStringSet("routine_days", days.toSet())
-        editor.apply()
+        prefs.edit().apply {
+            putString("routine_title", title)
+            putString("routine_time", time)
+            putStringSet("routine_days", days.toSet())
+            apply()
+        }
 
         Toast.makeText(this, "기본 루틴으로 저장되었습니다", Toast.LENGTH_SHORT).show()
     }
