@@ -22,11 +22,6 @@ class PuzzleActivity : AppCompatActivity() {
         PuzzleSection("헬스러", 9, R.id.section_adult),
     )
 
-    private val acquiredMap = mapOf(
-        "헬린이" to listOf(0, 1, 2, 3, 4, 5, 6, 7, 8),
-        "헬스러" to listOf(0, 1, 2, 3),
-    )
-
     private val imageResMap: Map<String, List<Int>> = mapOf(
         "헬린이" to listOf(
             R.drawable.child_0, R.drawable.child_1, R.drawable.child_2, R.drawable.child_3,
@@ -40,7 +35,6 @@ class PuzzleActivity : AppCompatActivity() {
         )
     )
 
-    // 완성 이미지
     private val completeImageMap = mapOf(
         "헬린이" to R.drawable.child,
         "헬스러" to R.drawable.adult
@@ -51,6 +45,10 @@ class PuzzleActivity : AppCompatActivity() {
         binding = ActivityPuzzleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // ✅ SharedPreferences에서 수집된 퍼즐 불러오기
+        val prefs = getSharedPreferences("puzzle_data", MODE_PRIVATE)
+        val collectedSet = prefs.getStringSet("collected_puzzles", emptySet()) ?: emptySet()
+
         var totalAcquired = 0
         var totalPieces = 0
 
@@ -58,13 +56,16 @@ class PuzzleActivity : AppCompatActivity() {
             val sectionView = findViewById<View>(section.sectionId)
             val sectionBinding = PuzzleSectionBinding.bind(sectionView)
 
-            val acquiredList = acquiredMap[section.title] ?: emptyList()
+            // ✅ 해당 섹션에 수집된 퍼즐 필터링
+            val acquiredList = collectedSet
+                .filter { it.startsWith(section.title) }
+                .map { it.split("-")[1].toInt() }
+
             val imageList = imageResMap[section.title] ?: emptyList()
 
             sectionBinding.puzzleTitle.text = section.title
             sectionBinding.puzzleGrid.removeAllViews()
 
-            // 퍼즐 조각 추가
             for (i in 0 until section.totalCount) {
                 val imageView = ImageView(this).apply {
                     layoutParams = GridLayout.LayoutParams().apply {
@@ -94,7 +95,6 @@ class PuzzleActivity : AppCompatActivity() {
             totalAcquired += acquiredList.size
             totalPieces += section.totalCount
 
-            // 퍼즐 완성 여부에 따라 버튼 상태 조절
             if (acquiredList.size == section.totalCount) {
                 sectionBinding.allPuzzle.isEnabled = true
                 sectionBinding.allPuzzle.backgroundTintList =
@@ -105,7 +105,6 @@ class PuzzleActivity : AppCompatActivity() {
                     ContextCompat.getColorStateList(this, android.R.color.darker_gray)
             }
 
-            // 전체보기 버튼
             sectionBinding.allPuzzle.setOnClickListener {
                 if (acquiredList.size == section.totalCount) {
                     val completeImage = completeImageMap[section.title]
@@ -133,7 +132,7 @@ class PuzzleActivity : AppCompatActivity() {
                     startActivity(Intent(this, RoutineSettingActivity::class.java))
                     true
                 }
-                R.id.nav_puzzle -> true // 현재 페이지
+                R.id.nav_puzzle -> true
                 R.id.nav_mypage -> {
                     startActivity(Intent(this, MyPageActivity::class.java))
                     true
@@ -141,7 +140,6 @@ class PuzzleActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
     }
 
     private fun showZoomDialog(imageResId: Int) {

@@ -125,9 +125,10 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/text_completed_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="48"
+                    android:text="0"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp" />
@@ -157,9 +158,10 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/text_puzzle_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1"
+                    android:text="0"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp" />
@@ -207,6 +209,7 @@
                 android:layout_marginTop="4dp" />
 
             <ProgressBar
+                android:id="@+id/progress_puzzle_master"
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
                 android:layout_marginTop="12dp"
@@ -217,6 +220,7 @@
                 android:backgroundTint="#E0E0E0" />
 
             <TextView
+                android:id="@+id/text_puzzle_master_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12/15"
