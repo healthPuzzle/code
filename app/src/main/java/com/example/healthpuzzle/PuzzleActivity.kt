@@ -45,7 +45,17 @@ class PuzzleActivity : AppCompatActivity() {
         binding = ActivityPuzzleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // ✅ SharedPreferences에서 수집된 퍼즐 불러오기
+        // 임시 더미 데이터
+        val dummyPrefs = getSharedPreferences("puzzle_data", MODE_PRIVATE)
+        val dummyEditor = dummyPrefs.edit()
+        val dummySet = mutableSetOf<String>()
+        for (i in 0 until 8) {
+            dummySet.add("헬린이-$i")
+        }
+        dummyEditor.putStringSet("collected_puzzles", dummySet)
+        dummyEditor.apply()
+
+        // SharedPreferences에서 수집된 퍼즐 불러오기
         val prefs = getSharedPreferences("puzzle_data", MODE_PRIVATE)
         val collectedSet = prefs.getStringSet("collected_puzzles", emptySet()) ?: emptySet()
 
@@ -56,7 +66,7 @@ class PuzzleActivity : AppCompatActivity() {
             val sectionView = findViewById<View>(section.sectionId)
             val sectionBinding = PuzzleSectionBinding.bind(sectionView)
 
-            // ✅ 해당 섹션에 수집된 퍼즐 필터링
+            // 해당 섹션에 수집된 퍼즐 필터링
             val acquiredList = collectedSet
                 .filter { it.startsWith(section.title) }
                 .map { it.split("-")[1].toInt() }
