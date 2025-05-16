@@ -230,43 +230,30 @@
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
-        <!-- 정기 루틴 보기 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="정기 루틴"
+            android:text="기본 루틴"
             android:textSize="15sp"
             android:textStyle="bold"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="12dp" />
 
+        <!-- 기본 루틴 카드 컨테이너 -->
         <LinearLayout
             android:id="@+id/layout_regular_routine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="gone"
-            android:background="@drawable/card_bg"
-            android:padding="16dp"
             android:layout_marginBottom="12dp">
 
-            <TextView
-                android:id="@+id/text_regular_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="💪 루틴 제목"
-                android:textStyle="bold"
-                android:textSize="14sp" />
+            <!-- 루틴 항목 (반복 사용될 박스) -->
 
-            <TextView
-                android:id="@+id/text_regular_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="월, 화, 수, 목, 금 - 07:00"
-                android:textSize="12sp"
-                android:textColor="#666666"
-                android:layout_marginTop="4dp" />
+
+            <!-- ↑ 위 LinearLayout을 Java/Kotlin 코드에서 루틴 개수만큼 addView()로 동적으로 추가 -->
         </LinearLayout>
+
     </LinearLayout>
 
     <!-- 하단 네비게이션 -->
